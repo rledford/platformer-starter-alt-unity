@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerIdleState : PlayerGroundedState
+public class PlayerIdleState : PlayerBaseGroundState
 {
     public PlayerIdleState(Player player, PlayerData playerData, FiniteStateMachine stateMachine) : base(player, playerData, stateMachine)
     {

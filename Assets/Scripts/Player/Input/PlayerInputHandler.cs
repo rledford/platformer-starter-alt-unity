@@ -7,6 +7,7 @@ public class PlayerInputHandler : MonoBehaviour
     public int InputX { get; private set; }
     public int InputY { get; private set; }
     public bool JumpPressed { get; private set; }
+    public bool JumpCanceled { get; private set; }
     private float jumpInputStartTime;
     private float jumpInputBufferTime = 0.2f;
     public bool AttackPressed { get; private set; }
@@ -50,9 +51,11 @@ public class PlayerInputHandler : MonoBehaviour
         if (ctx.started) {
             jumpInputStartTime = Time.time;
             JumpPressed = true;
+            JumpCanceled = false;
         } else if (ctx.canceled) {
             // TODO: add logic for jump-cut
             JumpPressed = false;
+            JumpCanceled = true;
         }
     }
 

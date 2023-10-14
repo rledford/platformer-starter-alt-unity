@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerGroundedState : PlayerState
+public class PlayerBaseGroundState : PlayerState
 {
     protected bool isGrounded;
     protected bool isTouchingWall;
@@ -10,7 +10,7 @@ public class PlayerGroundedState : PlayerState
     protected bool hasAttackModifier;
     protected bool hasJumpInput;
 
-    public PlayerGroundedState(Player player, PlayerData playerData, FiniteStateMachine stateMachine) : base(player, playerData, stateMachine)
+    public PlayerBaseGroundState(Player player, PlayerData playerData, FiniteStateMachine stateMachine) : base(player, playerData, stateMachine)
     {
     }
 

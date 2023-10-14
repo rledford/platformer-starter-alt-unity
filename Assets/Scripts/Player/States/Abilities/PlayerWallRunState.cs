@@ -6,6 +6,7 @@ public class PlayerWallRunState : PlayerAbilityState
 {
     private bool isTouchingCeiling;
     private bool isTouchingWall;
+    private bool isCanceled;
     private Vector2 startPosition;
     private int remainingRuns;
 
@@ -39,11 +40,14 @@ public class PlayerWallRunState : PlayerAbilityState
     {
         base.LogicUpdate();
 
+        isCanceled = player.InputHandler.JumpCanceled;
         float runDistance = GetRunDistanceTraveled();
         bool canRun = isTouchingWall && runDistance < playerData.wallRunDistance;
 
         if (isTouchingCeiling) {
             stateMachine.ChangeState(player.InAirState);
+        } else if (isCanceled) {
+            isAbilityDone = true;
         } else if (canRun) {
             Run();
         } else {

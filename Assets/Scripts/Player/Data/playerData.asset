@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: playerData
   m_EditorClassIdentifier: 
   gravityScale: 10
-  fallGravityScale: 15
+  fallGravityScale: 12.5
   ceilingCheckRange: 0.1
   groundCheckRange: 0.1
   wallCheckRange: 0.1
@@ -23,6 +23,8 @@ MonoBehaviour:
   maxFallSpeed: 25
   maxJumps: 2
   jumpHeight: 6
+  jumpCancelMultiplier: 0.75
+  jumpTimeToApex: 1.1
   jumpCoyoteTime: 0.2
   wallRunSpeed: 15
   wallRunDistance: 4

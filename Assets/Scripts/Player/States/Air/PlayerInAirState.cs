@@ -8,6 +8,7 @@ public class PlayerInAirState : PlayerState
     private int inputX;
     private bool hasInputX;
     private bool hasInputJump;
+    private bool hasInputJumpCanceled;
     private bool hasCoyote;
     private bool hasAttackInput;
     private bool hasAttackModifier;
@@ -43,6 +44,7 @@ public class PlayerInAirState : PlayerState
         inputX = player.InputHandler.InputX;
         hasInputX = inputX != 0;
         hasInputJump = player.InputHandler.JumpPressed;
+        hasInputJumpCanceled = player.InputHandler.JumpCanceled;
         hasAttackInput = player.InputHandler.AttackPressed;
         hasAttackModifier = player.InputHandler.AttackModifierPressed;
         
@@ -86,6 +88,8 @@ public class PlayerInAirState : PlayerState
         if (!isRising) {
             player.SetGravityScale(playerData.fallGravityScale);
             player.SetVelocityY(Mathf.Max(player.CurrentVelocity.y, -playerData.maxFallSpeed));
+        } else if (hasInputJumpCanceled) {
+            player.SetVelocityY(player.CurrentVelocity.y * playerData.jumpCancelMultiplier);
         }
     }
 }

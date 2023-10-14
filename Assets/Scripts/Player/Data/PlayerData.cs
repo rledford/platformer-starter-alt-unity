@@ -23,6 +23,8 @@ public class PlayerData : ScriptableObject
     [Header("Jump State")]
     public int maxJumps = 1;
     public float jumpHeight = 6f;
+    public float jumpCancelMultiplier = 0.3f;
+    public float jumpTimeToApex = 1.5f;
     public float jumpCoyoteTime = 0.2f;
 
     [Header("Wall Run State")]

@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
         CurrentVelocity = velocity;
     }
 
-    public void AccelX() {
+    private void AccelX() {
         float vx = Mathf.Clamp(
             CurrentVelocity.x + FacingDirection * playerData.maxMoveSpeed * playerData.moveAccel * Time.deltaTime,
             -playerData.maxMoveSpeed,
@@ -85,7 +85,7 @@ public class Player : MonoBehaviour
         SetVelocityX(vx);
     }
 
-    public void DecelX() {
+    private void DecelX() {
         float vx = Mathf.Abs(CurrentVelocity.x) - playerData.maxMoveSpeed * playerData.moveDecel * Time.deltaTime;
 
         if (vx < 0.1f) {

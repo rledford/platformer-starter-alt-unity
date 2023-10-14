@@ -24,8 +24,17 @@ public class PlayerJumpState : PlayerAbilityState
     {
         base.LogicUpdate();
 
+        base.LogicUpdate();
+
         player.SetGravityScale(playerData.gravityScale);
         player.SetVelocityY(Mathf.Sqrt(-2 * Physics2D.gravity.y * playerData.gravityScale * playerData.jumpHeight));
+
+        isAbilityDone = true;
+
+        // Calculate gravity scale based on a predefined jump time
+        // float gravityScale = 2 * playerData.jumpHeight / Mathf.Pow(playerData.jumpTimeToApex, 2);
+        // player.SetGravityScale(gravityScale);
+        // player.SetVelocityY(Mathf.Sqrt(-2 * Physics2D.gravity.y * gravityScale * playerData.jumpHeight));
 
         isAbilityDone = true;
     }

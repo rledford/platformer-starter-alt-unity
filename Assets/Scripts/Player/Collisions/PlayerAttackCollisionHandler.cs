@@ -1,9 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class AttackCollisionHandler : MonoBehaviour
+public class PlayerAttackCollisionHandler : MonoBehaviour
 {
     [SerializeField]
     private Player player;
