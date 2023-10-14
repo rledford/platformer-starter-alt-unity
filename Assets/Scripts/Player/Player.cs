@@ -22,6 +22,9 @@ public class Player : MonoBehaviour
 
     [SerializeField]
     private Transform[] wallChecks;
+
+    [SerializeField]
+    private GameObject attackHitbox;
     #endregion
 
     #region Colliders
@@ -34,6 +37,7 @@ public class Player : MonoBehaviour
     private Vector2 velocity;
     public Vector2 CurrentVelocity { get; private set; }
     public int FacingDirection { get; private set; }
+    public bool IsAttacking { get; private set; }
     #endregion
 
     #region States
@@ -48,6 +52,14 @@ public class Player : MonoBehaviour
     #endregion
 
     #region Mutations
+    public void EnableAttack() {
+        IsAttacking = true;
+        attackHitbox.SetActive(true);
+    }
+    public void DisableAttack() {
+        IsAttacking = false;
+        attackHitbox.SetActive(false);
+    }
     public void SetGravityScale(float gravityScale) {
         RB.gravityScale = gravityScale;
     }
@@ -100,6 +112,7 @@ public class Player : MonoBehaviour
         FacingDirection *= -1;
         transform.Rotate(0f, 180f, 0f);
     }
+
     #endregion
 
     #region Checks
@@ -123,6 +136,7 @@ public class Player : MonoBehaviour
         
         return hits > 0;
     }
+
     public bool CheckIsGrounded() {
         int hits = 0;
         for (int i = 0; i < groundChecks.Length; i++) {
@@ -161,6 +175,7 @@ public class Player : MonoBehaviour
         InputHandler = GetComponent<PlayerInputHandler>();
         FacingDirection = 1;
         StateMachine.ChangeState(IdleState);
+        DisableAttack();
     }
 
     void Update()
@@ -187,8 +202,6 @@ public class Player : MonoBehaviour
         for (int i = 0; i < wallChecks.Length; i++) {
             Gizmos.DrawRay(wallChecks[i].position, Vector2.right * playerData.wallCheckRange);
         }
-        // Gizmos.DrawRay(wallCheck.position, Vector2.right * playerData.wallCheckRange * FacingDirection);
-		// Gizmos.DrawSphere(groundCheck.position, playerData.groundCheckRadius);
 	}
     #endregion
 }

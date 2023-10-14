@@ -20,5 +20,7 @@ public class FiniteState
         DoChecks();
     }
 
+    public virtual void OnHitboxCollision(Collider2D hit) {}
+
     public virtual void DoChecks() {}
 }

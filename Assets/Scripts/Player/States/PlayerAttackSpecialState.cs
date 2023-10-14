@@ -20,6 +20,7 @@ public class PlayerAttackSpecialState : PlayerAbilityState
         player.SetVelocityX(xVelocity);
         player.SetVelocityY(0);
         player.InputHandler.UseAttackInput();
+        player.EnableAttack();
         player.Sprite.color = Color.white;
 
         Debug.Log("special attack");
@@ -30,6 +31,13 @@ public class PlayerAttackSpecialState : PlayerAbilityState
         base.Exit();
 
         player.SetVelocityX(playerData.maxMoveSpeed * player.FacingDirection);
+        player.DisableAttack();
+    }
+
+    public override void OnHitboxCollision(Collider2D hit)
+    {
+        base.OnHitboxCollision(hit);
+        Debug.Log("hit detected");
     }
 
     public override void LogicUpdate()

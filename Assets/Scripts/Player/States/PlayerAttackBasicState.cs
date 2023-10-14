@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerAttackBasicState : PlayerAbilityState
@@ -11,9 +12,23 @@ public class PlayerAttackBasicState : PlayerAbilityState
         base.Enter();
 
         player.InputHandler.UseAttackInput();
-        player.Sprite.color = Color.red;
+        player.Sprite.color = Color.white;
+        player.EnableAttack();
 
         Debug.Log("basic attack");
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
+
+        player.DisableAttack();
+    }
+
+    public override void OnHitboxCollision(Collider2D hit)
+    {
+        base.OnHitboxCollision(hit);
+        Debug.Log("Hit detected");
     }
 
     public override void LogicUpdate()
