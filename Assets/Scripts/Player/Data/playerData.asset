@@ -12,23 +12,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f7161abf7ff24ff7b4c4fd711c68336, type: 3}
   m_Name: playerData
   m_EditorClassIdentifier: 
-  gravityScale: 10
-  fallGravityScale: 12.5
   ceilingCheckRange: 0.1
   groundCheckRange: 0.1
-  wallCheckRange: 0.1
-  moveAccel: 9
-  moveDecel: 9
-  maxMoveSpeed: 12
+  wallCheckRange: 0.2
+  moveAccel: 16
+  moveDecel: 16
+  maxMoveSpeed: 16
   maxFallSpeed: 25
   maxJumps: 2
   jumpHeight: 6
-  jumpCancelMultiplier: 0.75
-  jumpTimeToApex: 1.1
+  jumpCancelMultiplier: 0.8
+  jumpTimeToApex: 1.4
   jumpCoyoteTime: 0.2
   wallRunSpeed: 15
   wallRunDistance: 4
-  wallRunVaultHeight: 4
+  wallRunVaultHeight: 3
   attackDuration: 0.1
   specialAttackDistance: 7.5
   specialAttackDuration: 0.15

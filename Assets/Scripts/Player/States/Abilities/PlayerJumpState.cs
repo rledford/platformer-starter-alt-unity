@@ -13,7 +13,6 @@ public class PlayerJumpState : PlayerAbilityState
     {
         base.Enter();
 
-        Debug.Log("jump");
         player.Sprite.color = Color.green;
 
         player.InputHandler.UseJumpInput();
@@ -26,15 +25,13 @@ public class PlayerJumpState : PlayerAbilityState
 
         base.LogicUpdate();
 
-        player.SetGravityScale(playerData.gravityScale);
-        player.SetVelocityY(Mathf.Sqrt(-2 * Physics2D.gravity.y * playerData.gravityScale * playerData.jumpHeight));
-
-        isAbilityDone = true;
+        // Calculate jump velocity based on player gravity scale
+        // player.SetGravityScale(playerData.gravityScale);
+        // player.SetVelocityY(Mathf.Sqrt(-2 * Physics2D.gravity.y * playerData.gravityScale * playerData.jumpHeight));
 
         // Calculate gravity scale based on a predefined jump time
-        // float gravityScale = 2 * playerData.jumpHeight / Mathf.Pow(playerData.jumpTimeToApex, 2);
-        // player.SetGravityScale(gravityScale);
-        // player.SetVelocityY(Mathf.Sqrt(-2 * Physics2D.gravity.y * gravityScale * playerData.jumpHeight));
+        player.SetGravityScale(playerData.gravityScale);
+        player.SetVelocityY(playerData.jumpVelocity);
 
         isAbilityDone = true;
     }

@@ -22,8 +22,6 @@ public class PlayerAttackSpecialState : PlayerAbilityState
         player.InputHandler.UseAttackInput();
         player.EnableAttack();
         player.Sprite.color = Color.white;
-
-        Debug.Log("special attack");
     }
 
     public override void Exit()

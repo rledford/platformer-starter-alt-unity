@@ -60,6 +60,7 @@ public class Player : MonoBehaviour
         IsAttacking = false;
         attackHitbox.SetActive(false);
     }
+
     public void SetGravityScale(float gravityScale) {
         RB.gravityScale = gravityScale;
     }
@@ -117,7 +118,7 @@ public class Player : MonoBehaviour
 
     #region Checks
     public bool CheckIsRising() {
-        return CurrentVelocity.y > 0f;
+        return CurrentVelocity.y > 0.1f;
     }
 
     public bool CheckIsFalling() {
@@ -200,7 +201,7 @@ public class Player : MonoBehaviour
             Gizmos.DrawRay(groundChecks[i].position, Vector2.down * playerData.groundCheckRange);
         }
         for (int i = 0; i < wallChecks.Length; i++) {
-            Gizmos.DrawRay(wallChecks[i].position, Vector2.right * playerData.wallCheckRange);
+            Gizmos.DrawRay(wallChecks[i].position, Vector2.right * FacingDirection * playerData.wallCheckRange);
         }
 	}
     #endregion

@@ -14,8 +14,6 @@ public class PlayerAttackBasicState : PlayerAbilityState
         player.InputHandler.UseAttackInput();
         player.Sprite.color = Color.white;
         player.EnableAttack();
-
-        Debug.Log("basic attack");
     }
 
     public override void Exit()
@@ -28,7 +26,7 @@ public class PlayerAttackBasicState : PlayerAbilityState
     public override void OnHitboxCollision(Collider2D hit)
     {
         base.OnHitboxCollision(hit);
-        Debug.Log("Hit detected");
+        Debug.Log("hit detected");
     }
 
     public override void LogicUpdate()

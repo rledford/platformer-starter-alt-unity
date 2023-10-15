@@ -9,7 +9,6 @@ public class PlayerIdleState : PlayerBaseGroundState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("idle");
         player.Sprite.color = Color.black;
     }
 

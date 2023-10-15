@@ -18,10 +18,8 @@ public class PlayerWallRunState : PlayerAbilityState
     {
         base.Enter();
 
-        Debug.Log("wall run");
         player.Sprite.color = Color.cyan;
 
-        player.SetGravityScale(playerData.gravityScale);
         player.SetVelocityX(player.FacingDirection);
         player.JumpState.DecrementRemainingJumps();
         startPosition = player.transform.position;

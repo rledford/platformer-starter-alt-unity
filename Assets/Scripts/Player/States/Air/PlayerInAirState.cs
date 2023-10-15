@@ -20,8 +20,12 @@ public class PlayerInAirState : PlayerState
     {
         base.Enter();
 
-        Debug.Log("in air");
         player.Sprite.color = Color.gray;
+    }
+
+    public override void Exit()
+    {
+        base.Exit();
     }
 
     public override void DoChecks()
@@ -52,17 +56,17 @@ public class PlayerInAirState : PlayerState
         UpdateFall();
         player.UpdateAccelX();
 
-        if (hasInputJump) {
-            if (isTouchingWall && inputX == player.FacingDirection && player.WallRunState.CanWallRun()) {
-                stateMachine.ChangeState(player.WallRunState);
-            } else if (player.JumpState.CanJump()) {
-                stateMachine.ChangeState(player.JumpState);
-            }
-        } else if (isGrounded && !isRising) {
+        if (isGrounded && !isRising) {
             if (!hasInputX) {
                 stateMachine.ChangeState(player.IdleState);
             } else {
                 stateMachine.ChangeState(player.RunState);
+            }
+        } else if (hasInputJump) {
+            if (isTouchingWall && inputX == player.FacingDirection && player.WallRunState.CanWallRun()) {
+                stateMachine.ChangeState(player.WallRunState);
+            } else if (player.JumpState.CanJump()) {
+                stateMachine.ChangeState(player.JumpState);
             }
         } else if (hasAttackInput) {
             if (hasAttackModifier) {
@@ -86,7 +90,9 @@ public class PlayerInAirState : PlayerState
 
     private void UpdateFall() {
         if (!isRising) {
-            player.SetGravityScale(playerData.fallGravityScale);
+            // player.LerpGravityScale(playerData.fallGravityScale);
+            // player.SetGravityScale(playerData.fallGravityScale);
+            player.SetGravityScale(playerData.gravityScale * 1.75f);
             player.SetVelocityY(Mathf.Max(player.CurrentVelocity.y, -playerData.maxFallSpeed));
         } else if (hasInputJumpCanceled) {
             player.SetVelocityY(player.CurrentVelocity.y * playerData.jumpCancelMultiplier);

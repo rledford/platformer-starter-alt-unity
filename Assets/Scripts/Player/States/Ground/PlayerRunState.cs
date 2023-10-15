@@ -10,7 +10,6 @@ public class PlayerRunState : PlayerBaseGroundState
     {
         base.Enter();
 
-        Debug.Log("run");
         player.Sprite.color = Color.yellow;
     }
 

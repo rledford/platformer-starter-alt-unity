@@ -1,12 +1,9 @@
+using System;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "newPlayerData", menuName = "Data/Player Data/BaseData")]
 public class PlayerData : ScriptableObject
 {
-    [Header("Gravity")]
-    public float gravityScale = 10f;
-    public float fallGravityScale = 25f;
-
     [Header("Checks")]
     public float ceilingCheckRange = 0.1f;
     public float groundCheckRange = 0.1f;
@@ -26,6 +23,7 @@ public class PlayerData : ScriptableObject
     public float jumpCancelMultiplier = 0.3f;
     public float jumpTimeToApex = 1.5f;
     public float jumpCoyoteTime = 0.2f;
+    
 
     [Header("Wall Run State")]
     public float wallRunSpeed = 10f;
@@ -38,4 +36,16 @@ public class PlayerData : ScriptableObject
     [Header("Special Attack State")]
     public float specialAttackDistance = 5f;
     public float specialAttackDuration = 1f;
+
+    #region Computed
+    public float gravityScale { get; private set; }
+    public float jumpVelocity { get; private set; }
+    #endregion
+
+    void OnValidate() {
+        gravityScale = 2 * jumpHeight / Mathf.Pow(jumpTimeToApex, 2);
+        jumpVelocity = Mathf.Sqrt(-2 * Physics2D.gravity.y * gravityScale * jumpHeight);
+        // player.SetGravityScale(gravityScale);
+        // player.SetVelocityY(Mathf.Sqrt(-2 * Physics2D.gravity.y * gravityScale * playerData.jumpHeight));
+    }
 }
